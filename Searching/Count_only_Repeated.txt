@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+
+int cR(int arr[],int s,int e){
+    while(s<=e){
+        int mid=(s+e)/2;
+        if(arr[mid+1]==arr[mid] && (arr[mid-1]!=arr[mid] || mid==s)){
+            return mid;
+        }
+        else if((arr[mid]-arr[0])<mid){
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+    }
+}
+
+int dR(int arr[],int s,int e,int x){
+    while(s<=e){
+        int mid=(s+e)/2;
+        if(arr[mid]==x){
+            return mid;
+        }
+        else if(arr[mid]<x){
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+    }
+    return e+1;
+}
+
+int main()
+ {
+	//code
+	int t;cin>>t;
+	while(t--){
+	    int n;cin>>n;
+	    int *arr = new int[n];
+	    for(int i=0;i<n;i++){
+	        cin>>arr[i];
+	    }
+	    int lI = cR(arr,0,n-1); 
+	    int rI = dR(arr,0,n-1,(arr[lI]+1));
+	    cout<<arr[lI]<<" "<<(rI-lI)<<endl;
+	}
+	return 0;
+}
