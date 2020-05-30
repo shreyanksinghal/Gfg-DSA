@@ -1,0 +1,16 @@
+int countSetBits(int n){
+    if(n<=0){
+        return 0;
+    }
+    if(n==1){
+        return 1;
+    }
+    // Your logic here
+    int a = countSetBits(n-1);
+    int x=0;
+    while((n&(n-1))!=0){
+        x++;
+        n=n&(n-1);
+    }
+    return x+a+1;
+}
