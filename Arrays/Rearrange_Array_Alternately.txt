@@ -1,0 +1,23 @@
+void rearrange(int *arr, int n) 
+{ 
+	
+	// Your code here
+	int a[n];
+	int l=0,j=n-1,k=0;
+	for(int i=0;i<n;i++){
+	    if(i%2==0){
+	        a[k]=arr[j];
+	        j--;
+	        k++;
+	    }
+	    else{
+	        a[k]=arr[l];
+	        l++;
+	        k++;
+	    }
+	}
+	for(int i=0;i<n;i++){
+	    arr[i]=a[i];
+	}
+	 
+}
