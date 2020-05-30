@@ -1,0 +1,26 @@
+int Ksum(int arr[],int n){
+    int a[n];
+    for(int i=0;i<n;i++){
+        a[i]=arr[i];
+    }
+    int ms=a[0];
+    for(int i=1;i<n;i++){
+        a[i]=max(a[i],a[i]+a[i-1]);
+        ms=max(ms,a[i]);
+    }
+    return ms;
+}
+
+int circularSubarraySum(int arr[], int n){
+    int ns = Ksum(arr,n);
+    if(ns<0){
+        return ns;
+    }
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        arr[i]=-arr[i];
+    }
+    int x = sum + Ksum(arr,n) ;
+    return max(ns,x);
+}
