@@ -1,0 +1,16 @@
+int digitalRoot(int n)
+{
+    //Your code here
+    if(n<10){
+        return n;
+    }
+    else{
+        int x = n;
+        int a = 0;
+        while(x!=0){
+            a += x % 10;
+            x = x/10;
+        }
+        return digitalRoot(a);   
+    }
+}
