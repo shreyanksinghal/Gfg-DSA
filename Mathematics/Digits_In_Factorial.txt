@@ -1,0 +1,11 @@
+int digitsInFactorial(int N)
+{
+    if (N < 0) 
+        return 0; 
+
+    double digits = 0; 
+    for (int i=1; i<=N; i++) 
+        digits += log10(i); 
+  
+    return floor(digits) + 1; 
+}
