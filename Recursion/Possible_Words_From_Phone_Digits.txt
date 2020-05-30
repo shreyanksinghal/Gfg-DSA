@@ -1,0 +1,20 @@
+string hashTable[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+void pW(int a[], int N, string output){
+    if(N==0){
+        cout<<output<<" ";
+        return;
+    }
+    string str = hashTable[a[0]];
+    for(int i=0;i<str.length();i++){
+        pW(a+1,N-1,output+str[i]);
+    }
+    return;
+}
+
+void possibleWords(int a[],int N)
+{
+    //Your code here
+    return pW(a,N,"");
+    
+}
