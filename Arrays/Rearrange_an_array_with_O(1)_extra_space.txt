@@ -1,0 +1,17 @@
+void arrange(long long arr[], int n) {
+    // Your code here
+    int me=0;
+    for(int i=0;i<n;i++){
+        if(me<arr[i]){
+            me=arr[i];
+        }
+    }
+    me+=me;
+    for(int i=0;i<n;i++){
+        arr[i]=(arr[i] + (arr[arr[i]]%me)*me) ;
+    }
+    for(int i=0;i<n;i++){
+        arr[i]=arr[i]/me;
+    }
+    
+}
