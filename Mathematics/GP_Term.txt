@@ -1,0 +1,6 @@
+double termOfGP(int A,int B,int N)
+{
+    double a = (B*1.0)/A;
+    double x = A*pow(a,N-1);
+    return floor(x);
+}
