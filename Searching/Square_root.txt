@@ -1,0 +1,23 @@
+long long int floorSqrt(long long int x) 
+{
+    // Your code goes here 
+    int sr=0;
+    if(x<=1){
+        return x;
+    }
+    long long int start=0,end=x;
+    while(start<=end){
+        long long int mid=(start+end)/2;
+        if(mid*mid == x){
+            return mid;
+        }
+        else if(mid*mid<x){
+            start=mid+1;
+            sr=mid;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    return sr;
+}
