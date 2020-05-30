@@ -1,0 +1,5 @@
+double cToF(int C)
+{
+    //Your code here
+    return ((9*C)/5 + 32);
+}
