@@ -1,0 +1,11 @@
+int grayToBinary(int n)
+{
+    int inv = 0; 
+  
+    // Taking xor until n becomes zero 
+    for (; n; n = n >> 1) 
+        inv ^= n; 
+  
+    return inv; 
+    
+}
