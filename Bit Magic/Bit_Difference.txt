@@ -1,0 +1,11 @@
+int countBitsFlip(int a, int b){
+    
+    // Your logic here
+    int x = a xor b;
+    int y = 0;
+    while(x>0){
+        x = (x & (x-1));
+        y++;
+    }
+    return y;
+}
