@@ -1,0 +1,49 @@
+bool checkRotatedAndSorted(int arr[], int n){
+    
+    // Your code here
+    int minEle = INT_MAX; 
+    int maxEle = INT_MIN;
+    int minIndex = -1; 
+    int maxIndex = -1; 
+    for(int i=0;i<n;i++){
+        if(arr[i]>=maxEle){
+            maxEle=arr[i];
+            maxIndex=i;
+        }
+        if (arr[i] < minEle) { 
+            minEle = arr[i]; 
+            minIndex = i; 
+        }
+    }
+    if(minIndex-maxIndex==1 && arr[0]>=arr[n-1]){
+        //Ascending
+        for(int i=0;i<maxIndex;i++){
+            if(arr[i+1]<arr[i]){
+                return false;
+            }
+        }
+        for(int i=maxIndex+1;i<n-1;i++){
+            if(arr[i+1]<arr[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+    else if(minIndex-maxIndex== -1 && arr[0]<=arr[n-1]){
+        //Descending
+        for(int i=0;i<minIndex-1;i++){
+            if(arr[i+1]>arr[i]){
+                return false;
+            }
+        }
+        for(int i=maxIndex+1;i<n-1;i++){
+            if(arr[i+1]>arr[i]){
+                return false;
+            }
+        }
+        return true;
+        
+    }
+    return false;
+    
+}
