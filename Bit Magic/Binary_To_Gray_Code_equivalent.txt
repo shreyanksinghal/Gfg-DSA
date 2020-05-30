@@ -1,0 +1,6 @@
+int greyConverter(int n)
+{
+    
+    // Your code here
+    return ( n ^ (n>>1));
+}
