@@ -1,0 +1,8 @@
+int posOfRightMostDiffBit(int m, int n)
+{
+    
+    // Your code here
+    int a=(m xor n);
+    return getRightMostSetBit(a);
+    
+}
