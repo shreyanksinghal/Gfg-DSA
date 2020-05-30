@@ -1,0 +1,17 @@
+int maxWater(int height[], int n) 
+{ 
+    //Your code here
+    int i=0,j=n-1;
+    int res=0;
+    while(i<j){
+        int x = min(height[i],height[j])*(j-i-1);
+        res=max(res,x);
+        if(height[i]<height[j]){
+            i++;
+        }
+        else{
+            j--;
+        }
+    }
+    return res;
+} 
