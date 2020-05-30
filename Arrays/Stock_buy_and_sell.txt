@@ -1,0 +1,36 @@
+void stockBuySell(int arr[], int n)
+{
+    
+    // Your code here
+    int profit = 0;
+    int x=0;
+    if(arr[1]>arr[0]){
+       cout<<"(0 ";
+       profit=arr[1]-arr[0]; 
+       x=1;
+    }
+    int i;
+    for(i=1;i<n-1;i++){
+        
+        if(arr[i+1]>arr[i]){
+            if(arr[i]<=arr[i-1] && x==0){
+                cout<<"("<<i<<" ";
+            }
+            x=1;
+            profit++;
+            continue;
+        }
+        if(arr[i+1]<arr[i] && arr[i]>=arr[i-1] && profit>0 && x==1){
+            cout<<i<<")"<<" ";
+            x=0;
+            continue;
+        }
+    }
+    if(arr[n-1]>arr[n-2] && profit>0){
+            cout<<(n-1)<<")"<<" ";
+        }
+    if(profit==0){
+        cout<<"No Profit";
+    }
+    
+}
