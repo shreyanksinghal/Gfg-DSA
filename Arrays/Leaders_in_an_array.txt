@@ -1,0 +1,14 @@
+vector<int> leaders(int arr[], int n){
+     vector<int> x;
+     x.push_back(arr[n-1]);
+     int cl=arr[n-1];
+     for(int i=(n-2);i>=0;i--){
+         if(arr[i]>=cl){
+             cl=arr[i];
+             x.push_back(arr[i]);
+         }
+     }
+     reverse(x.begin(), x.end());
+     return x;
+    
+}
