@@ -1,0 +1,12 @@
+void quadraticRoots(int a,int b, int c)
+{
+   int D = floor((b*b)-(4*a*c));
+   if(D>=0){
+       int x =floor( (-b+sqrt(D)) / (2.0*a) );
+       int y =floor( (-b-sqrt(D)) / (2.0*a) );
+       cout<<(x>=y ? x : y)<<" "<<(x<=y ? x : y);
+   }
+   else{
+       cout<<"Imaginary";
+   }
+}
