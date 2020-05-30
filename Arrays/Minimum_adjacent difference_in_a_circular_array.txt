@@ -1,0 +1,9 @@
+int minAdjDiff(int arr[], int n){    
+    // Your code here
+    int min = abs(arr[n-1]-arr[0]);
+    for(int i=1;i<n;i++){
+        int x = abs(arr[i-1]-arr[i]);
+        min = (min>=x ? x : min);
+    }
+    return min;
+}
