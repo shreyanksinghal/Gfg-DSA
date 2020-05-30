@@ -1,0 +1,13 @@
+vector<long long> reverseInGroups(vector<long long> mv, int n, int k){
+    
+    // your code here
+    int i=0;
+    for(i;(i+k)<n;i+=k){
+        reverse(mv.begin() + i, mv.begin()+i+k); 
+    }
+    if(i<n){
+        reverse(mv.begin() + i, mv.end());
+    }
+    return mv;
+    
+}
