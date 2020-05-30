@@ -1,0 +1,8 @@
+vector<int> printfrequency(int arr[], int n)
+{ 
+    vector <int> r(n,0);
+    for(int i=0;i<n;i++){
+        r[arr[i]-1]++;
+    }
+    return r;
+} 
