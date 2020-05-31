@@ -1,0 +1,21 @@
+bool findTriplets(int arr[], int n)
+{ 
+    //Your code here
+    sort(arr,arr+n);
+    for(int i=0;i<n;i++){
+        int j=(i+1),k=(n-1);
+        while(j<k){
+            if((arr[j]+arr[k])==(-arr[i]))
+            {
+                return true;
+            }
+            else if((arr[j]+arr[k])>(-arr[i])){
+                k=k-1;
+            }
+            else{
+                j=j+1;
+            }
+        }
+    }
+    return false;
+}
