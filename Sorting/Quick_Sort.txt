@@ -1,0 +1,15 @@
+int partition (int arr[], int low, int high)
+{
+   // Your code here
+   int pivot = arr[high];
+   int i=(low-1),j=low;
+   for(j=low;j<=high-1;j++){
+       if(arr[j]<pivot){
+           i++;
+           swap(arr[i],arr[j]);
+       }
+   }
+   swap(arr[i+1],arr[j]);
+   return (i+1);
+   
+}
