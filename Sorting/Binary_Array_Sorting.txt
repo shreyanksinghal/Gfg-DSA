@@ -1,0 +1,11 @@
+void binSort(int A[], int N)
+{
+   //Your code here
+   int i=-1;
+   for(int j=0;j<N;j++){
+       if(A[j]==0){
+           i++;
+           swap(A[i],A[j]);
+       }
+   }
+}
