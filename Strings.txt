@@ -1,0 +1,663 @@
+//Naive Pattern Search-->cpp
+bool search(string pat, string txt)
+{
+
+int n = txt.length();
+int m = pat.length();
+for(int i = 0; i < n; i++)
+{
+int j;
+for(j = 0; j < m; j++)
+{
+if(txt[i+j] != pat[j])
+break;
+}
+if(j == m)
+return true;
+}
+return false;
+}
+===============================================================================================
+//Distinct Pattern Search-->cpp
+bool search(string pat, string txt)
+{
+
+int n = txt.length();
+int m = pat.length();
+for(int i = 0; i < n; i++)
+{
+int j;
+for(j = 0; j < m; j++)
+{
+if(txt[i+j] != pat[j])
+break;
+}
+if(j == m)
+return true;
+}
+return false;
+}
+===============================================================================================
+//Binary String-->java
+class StringBinary{
+    public static int binarySubstring(int a, String str)
+    {
+        // Your code here
+        int ctr=0;
+    for(int i=0; i<a; i++)
+        ctr = (str.charAt(i)=='1')?ctr+1:ctr;
+    return (ctr*(ctr-1)/2);
+    }
+}
+===============================================================================================
+//Implement strstr-->cpp
+int strstr(string s, string x)
+{
+int f=-1;
+f=s.find(x);
+return f;
+
+}
+===============================================================================================
+//Anagram-->cpp
+bool isAnagram(string c, string d){
+     if(c.length()!=d.length())
+    return false;
+    
+    int count[256]={0};
+    for(int i=0;i<c.length();i++){
+        count[c[i]]++;
+        
+    }
+    for(int i=0;i<d.length();i++){
+        count[d[i]]--;
+    }
+    for(int i=0;i<c.length();i++)
+    if(count[c[i]]!=0)
+    return false;
+    
+    return true;
+    // Your code here
+    
+}
+
+
+===============================================================================================
+//Check if string is rotated by two places-->cpp
+bool isRotated(string str1, string str2)
+{
+    // Your code here
+    if(str1.length() != str2.length())
+        return false;
+        
+    if(str1.length() <= 2 && str1.compare(str2) == 0)
+        return true;
+    
+    if(str1.length() <= 2 && str1.compare(str2) != 0)
+        return false;
+    
+    int i = str1.length();
+    
+    string sol1 = "";
+    sol1 += str1.substr(i-2, 2) + str1.substr(0,i-2);
+    
+    string sol2 = "";
+    sol2 += str1.substr(2, i-2) + str1.substr(0,2);
+    
+    return (str2.compare(sol1) == 0 || str2.compare(sol2) == 0);
+}
+
+===============================================================================================
+//Check if strings are rotations of each other or not-->java
+class Rotate{
+    
+    /*  Function to check if two strings are rotations of each other
+    *   s1, s2: are the input strings
+    */
+    public static boolean areRotations(String s, String x )
+    {
+        // Your code here
+        return (s.length()==x.length() && (s+s).contains(x));
+    }
+    
+}
+===============================================================================================
+//Isomorphic Strings-->java
+class Isomorphic{
+    // This function returns true if str1 and str2 are ismorphic
+    // else returns false
+    public static boolean areIsomorphic(String S1,String S2)
+    {
+        // Your code here
+        int len = S1.length();
+	
+	if (len != S2.length())
+		return false;
+	boolean[] IsVisited = new boolean[256];
+	char[] mappingArray = new char[256];
+	for (int i = 0; i < len; i++) {
+		char ch1 = S1.charAt(i);
+		char ch2 = S2.charAt(i);
+		
+		if (mappingArray[(int) ch1] == '\u0000' && IsVisited[(int) ch2]
+				|| mappingArray[(int) ch1] != '\u0000' && mappingArray[(int) ch1] != ch2)
+			return false;
+
+		if (mappingArray[(int) ch1] == '\u0000' && !IsVisited[(int) ch2]) {
+			IsVisited[(int) ch2] = true; /** Update visited **/
+			mappingArray[(int) ch1] = ch2; /** Update Mapping **/
+		}
+	}
+	return true;
+        
+    }
+}
+===============================================================================================
+//Check if a string is Isogram or not-->python
+def isIsogram(s):
+    #Your code here
+    a=list(s)
+    if len(set(a))==len(a):
+        return True
+    else:
+        return False
+
+===============================================================================================
+//Keypad typing-->cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	//code
+	int c;
+	int t;
+	cin>>t;
+	while(t--){
+	    string s;
+    	cin>>s;
+    	for(int i=0; i<s.length(); i++){
+    	    c = int(s[i]);
+    	    if(c>=97 && c<=99)
+        	    cout<<2;
+    	    else if(c>=100 && c<=102)
+    	        cout<<3;
+    	    else if(c>=103 && c<=105)
+    	        cout<<4;
+    	    else if(c>=106 && c<=108)
+    	        cout<<5;
+    	    else if(c>=109 && c<=111)
+    	        cout<<6;
+    	    else if(c>=112 && c<=115)
+    	        cout<<7;
+    	    else if(c>=116 && c<=118)
+    	        cout<<8;
+    	    else if(c>=119 && c<=122)
+    	        cout<<9;
+	    }
+	    cout<<endl;
+	}
+	
+	
+	return 0;
+}
+===============================================================================================
+//Repeating Character - First Appearance Leftmost-->java
+class Repeatation
+{
+    static int repeatedCharacter(String S)
+    {
+        int leftMost = -1;
+    int[] indexArr = new int[256];
+    int len = S.length();
+    for(int i=len-1; i>=0; i--){
+        leftMost = (indexArr[(int)S.charAt(i)]!=0)?i:leftMost;
+        indexArr[(int)S.charAt(i)] = i;
+    }
+    return leftMost;
+        // add your code here
+    }
+}
+===============================================================================================
+//Non Repeating Character-->java
+class Repeatation
+{
+    static char nonrepeatingCharacter(String S)
+    {
+        //Your code here
+        int[] freqArr = new int[26];
+    int len = S.length();
+    for(int i=0; i<len; i++)
+        freqArr[S.charAt(i)-'a']++;
+    for(int i=0; i<len; i++){
+        if(freqArr[S.charAt(i)-'a']==1)
+            return S.charAt(i);
+    }
+    return '$';
+    }
+}
+===============================================================================================
+//Maximum Occuring Character-->cpp
+char getMaxOccuringChar(char* str)
+{
+    // Your code here
+    int count[256]={0};
+    int i;
+    int max=INT_MIN;
+    int c;
+    i=0;
+    while(str[i]!='\0')
+    {
+        count[str[i]]++;
+        i++;
+    }
+    for(int j=0;j<256;j++)
+    {
+        if(count[j]>max)
+        {
+            max=count[j];
+            c=j;
+        }
+    }
+    
+    return char(c);
+}
+===============================================================================================
+//Remove common characters and concatenate-->cpp
+string concatenatedString(string s1, string s2) 
+{ 
+ int a[26]={0};
+    string s="";
+    for(int i=0;i<s1.length();i++){
+        a[s1[i]-'a']=2;
+    }
+    for(int i=0;i<s2.length();i++){
+        if(a[s2[i]-'a']==-1)continue;
+        if(a[s2[i]-'a']==2)a[s2[i]-'a']=-1;
+        if(a[s2[i]-'a']==0||a[s2[i]-'a']==1)a[s2[i]-'a']=1;
+    }
+    for(int i=0;i<s1.length();i++){
+        if(a[s1[i]-'a']==2)s+=s1[i];
+    }
+    for(int i=0;i<s2.length();i++){
+        if(a[s2[i]-'a']==1)s+=s2[i];
+    }
+    return s;
+}
+
+===============================================================================================
+//Reverse words in a given string-->cpp
+void reverseWords(char *s) {
+    
+    // Your code here
+    int i = strlen(s)-1;
+
+
+int j=i;
+while(1)
+{
+
+
+    while(s[j] != '.' && j !=0 )
+ {  
+    j--;
+ }
+    if(j==0)
+    {
+      for(int k = j;k<=i;k++)
+        {cout<<s[k];
+        }
+      break;
+    }
+    else{
+          
+        for(int k = j+1;k<=i;k++)
+        {cout<<s[k];
+        }
+        cout<<".";
+    }
+    i=j-1;
+    j=i;
+
+}
+}
+===============================================================================================
+//Sum of numbers in string-->cpp
+int findSum(string str)
+{
+	
+	// Your code here
+	int sum=0;
+	for(int i=0;i<str.length();i++){
+	   if(isdigit(str[i]))
+	   {
+	    int j=i;
+	    while(isdigit(str[j]))
+	       j++;
+	    sum+=atoi((str.substr(i,j-i+1)).c_str());
+	    i=j;
+	   }
+	}
+	return sum;     
+	
+}
+===============================================================================================
+//Pangram Checking-->cpp
+bool checkPangram (string &str)
+{
+     int hash[26]={0};
+     
+     for(int i=0; i<str.length(); i++)
+     {
+         if(str[i]>96 &&str[i] <123)
+          hash[str[i]-'a']++;
+          else if(str[i]>65 && str[i]<91)
+           hash[str[i]-'A']++;
+         
+     }
+     
+     for(int i=0; i<26; i++)
+     {
+         if(hash[i]==0)
+          return false;
+     }
+   return true;
+  
+}
+
+===============================================================================================
+//Minimum indexed character-->java
+class solve{
+    public static void solution(String s1, String s2){
+
+        int minIndex=Integer.MAX_VALUE;
+        String ans="No character present";
+        //Key is the character, and value is index of first occurence.
+        Map<Character,Integer> map = new HashMap<>();
+        int[] a = new int[26];
+        for(int i=0;i<s1.length();i++){
+            char c = s1.charAt(i);
+            if(!map.containsKey(c))
+                map.put(c,i);
+        }
+        for(int i=0;i<s2.length();i++){
+            char c = s2.charAt(i);
+            if(map.containsKey(c)){
+                if(map.get(c)<minIndex){
+                    minIndex=map.get(c);
+                    ans=Character.toString(c);
+                }
+            }
+        }
+        System.out.print(ans);
+
+    }
+}
+===============================================================================================
+//Smallest window in a string containing all the characters of another string-->java
+class solve
+{
+    public static String smallestWindow(String s, String t){
+        // Your code here
+     if(s.length()<t.length())
+            return "-1";
+        
+        HashMap<Character,Integer> reqChars = new HashMap<Character,Integer>();
+        
+        for(int i=0;i<t.length();i++)
+            if(reqChars.containsKey(t.charAt(i)))
+                reqChars.put(t.charAt(i),reqChars.get(t.charAt(i))+1);
+            else
+                reqChars.put(t.charAt(i),1);
+        
+        HashMap<Character,Integer> charsWindow = new HashMap<Character,Integer>();
+        int left=0;
+        int right=0;
+        String window= new String("");
+        int minWindowLength=Integer.MAX_VALUE;
+        int charFreqToMatch=reqChars.size();
+        int count=0;
+        
+        
+        
+        while(right<s.length()){
+            char c=s.charAt(right);
+            int value =charsWindow.getOrDefault(c,0);
+            charsWindow.put(c,value+1);
+            
+            if(reqChars.containsKey(c))
+                if(reqChars.get(c)==charsWindow.get(c))
+                    count++;
+                    
+            while(charFreqToMatch==count&&left<=right){
+                char cl=s.charAt(left);
+                int currWindowLength= right-left+1;
+                
+                if(currWindowLength<minWindowLength){
+                    minWindowLength=currWindowLength;
+                    window=s.substring(left,right+1);
+                }
+                
+                charsWindow.put(cl,charsWindow.get(cl)-1);
+                
+                if(reqChars.containsKey(cl))
+                    if(reqChars.get(cl)>charsWindow.get(cl))
+                        count--;
+                left++;
+            }
+                    
+            right++;
+            
+        }
+        
+        return minWindowLength==Integer.MAX_VALUE?"-1":window;
+        
+    }
+    
+    public static void main(String[] args) 
+    { 
+        String str = "this is a test string"; 
+        String pat = "tist"; 
+      
+    System.out.print("Smallest window is :\n " + 
+                        smallestWindow(str, pat)); 
+    } 
+}
+===============================================================================================
+//Nth number made of prime digits-->java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	
+	public static void main(String[] args) {
+		StringBuilder sb = new StringBuilder();
+		Scanner in = new Scanner(System.in);
+		int T = in.nextInt();
+		while (T-- > 0) {
+			int N = in.nextInt();
+			sb.append("" + getNthNumber(N) + "\n");
+		}
+		System.out.print(sb);
+	}
+
+	public static int getNthNumber(int N) {
+		int ctr = 0, i = 1;
+		for (i = 1; ctr < N; i++) {
+			if (isAllDigitPrime(i))
+				ctr++;
+		}
+		return i - 1;
+	}
+
+	public static boolean isAllDigitPrime(int num) {
+		while (num > 0) {
+		    int x = num%10;
+			if (!(x==2 || x==3 || x==5 || x==7))
+				return false;
+			num /= 10;
+		}
+		return true;
+	}
+}
+===============================================================================================
+//The Modified String-->cpp
+int modified (string a){
+    // Your code here
+    int n=0, insert=0;
+    for(int i=1; i<a.length(); i++){
+        if(a[i]==a[i-1])
+            n++;
+        else{
+            insert+=n/2;
+            n=0;
+        }
+    }
+    insert+=n/2;
+    return insert;
+===============================================================================================
+//Case-specific Sorting of Strings-->cpp
+string caseSort(string s, int n){
+    
+    // your code here
+    vector<char> v1, v2; 
+    for (int i = 0; i < n; i++) { 
+        if (s[i] >= 'a' && s[i] <= 'z') 
+            v1.push_back(s[i]); 
+        if (s[i] >= 'A' && s[i] <= 'Z') 
+            v2.push_back(s[i]);
+    }
+    sort(v1.begin(), v1.end()); 
+    sort(v2.begin(), v2.end()); 
+    int i = 0, j = 0; 
+    for (int k = 0; k < n; k++) { 
+        if (s[k] >= 'a' && s[k] <= 'z') { 
+            s[k] = v1[i]; 
+            ++i; 
+        } 
+        else if (s[k] >= 'A' && s[k] <= 'Z') { 
+            s[k] = v2[j]; 
+            ++j; 
+        } 
+    } 
+  
+    
+    return s; 
+}
+===============================================================================================
+//Lexicographic Rank Of A String-->cpp
+int fact(int n)
+{
+    if(n==1 || n==0)
+        return 1;
+    else
+        return n*fact(n-1);
+}
+
+int findRank(string S) 
+{
+    int n=S.length();
+    
+    long long rank=0;
+    
+    for(int i=0;i<n-1;i++)
+    {
+        int count=0;
+        
+        for(int j=i+1;j<n;j++)
+        {
+            if(S[j]==S[i])
+                return 0;
+            if(S[j]<S[i])
+                count++;
+        }
+        
+        rank+=count*fact(n-i-1);
+    }
+    
+    return (rank+1)%1000000007;
+}
+===============================================================================================
+//Rabin Karp - Pattern Searching-->cpp
+#define d 256 
+
+bool search(string pat, string txt, int q)
+{
+if(txt.find(pat)==string::npos)
+return false;
+
+return true;
+}
+===============================================================================================
+//Pattern Search KMP-->cpp
+void computeLPSArray(string pat, int M, int* lps) 
+{ 
+	int len=0;
+	
+	lps[0]=0;
+	
+	int i=1;
+	
+	while(i<M)
+	{
+	    if(pat[len]==pat[i])
+	    {
+	        len++;
+	        
+	        lps[i]=len;
+	        
+	        i++;
+	    }
+	    else 
+	    {
+	        if(len!=0)
+	        {
+	            len=lps[len-1];
+	        }
+	        else
+	        {
+	            lps[i]=len;
+                i++;	            
+	        }
+	    }
+	}
+} 
+// Returns true if pat found in txt
+bool KMPSearch(string pat, string txt) {
+    
+    int N=txt.length();
+    int M=pat.length();
+    
+    int lps[M];
+    
+    computeLPSArray(pat,M,lps);
+    
+    int i=0;
+    int j=0;
+    
+    while(i<N)
+    {
+        if(pat[j]==txt[i])
+        {
+            i++;
+            j++;
+            
+        }
+        if(j==M)
+            return true;
+        else if(i<N && pat[j]!=txt[i])
+        {
+            if(j!=0)
+            {
+                j=lps[j-1];
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
+    
+    return false;
+}
+

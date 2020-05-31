@@ -1,0 +1,893 @@
+//Count nodes of linked list-->cpp
+
+int length(struct Node* head, int l)
+{
+    if(head==NULL)
+     return l;
+   return length(head->next,l+1);
+}
+int getCount(struct Node* head){
+
+    //Code here
+    return length(head,0);
+}
+=========================================================================================
+//Linked List Insertion-->cpp
+
+// function inserts the data in front of the list
+Node *tail = NULL;
+Node *insertAtBegining(Node *head, int newData) {
+// Your code here
+Node *temp = new Node(newData);
+if(head ==NULL)
+{
+head = temp;
+tail = temp;
+return head;
+}
+temp->next = head;
+head = temp;
+return head;
+}
+
+// function appends the data at the end of the list
+Node *insertAtEnd(Node *head, int newData) {
+// Your code here
+Node *n = new Node(newData);
+if(head == NULL)
+{
+head = n;
+tail = n;
+return head;
+}
+tail->next = n;
+tail = tail->next;
+return head;
+}
+=========================================================================================
+//Doubly linked list Insertion at given position--cpp
+
+/* Function to insert into a Doubly Linked List */
+Node* GetNth(Node* head, int index){
+  return index==0 ? head : GetNth(head->next, --index);
+}
+
+void addNode(Node *head, int pos, int data){
+    Node *new_node = new Node(data);
+    Node *temp = GetNth(head, pos);
+    
+    new_node->next = temp->next;
+    new_node->prev = temp;
+    temp->next = new_node;
+    if(new_node->next!=NULL){
+        temp = new_node->next;
+        temp->prev = new_node;
+    }
+}
+=========================================================================================
+//Insert in Middle of Linked List-->java
+
+class Solution {
+    
+    public Node insertInMid(Node head, int data){
+if(head == null) {
+return new Node(data);
+}
+Node slow = head;
+Node fast = head;
+Node tmp = new Node(data);
+while(fast.next != null && fast.next.next != null) {
+slow = slow.next;
+fast = fast.next.next;
+}
+tmp.next = slow.next;
+slow.next = tmp;
+return head;
+}
+}
+=========================================================================================
+//Identical Linked Lists-->cpp
+
+bool areIdentical(struct Node *head1, struct Node *head2)
+{
+    if(head1==NULL and head2==NULL) return true;
+if(head1==NULL or head2==NULL) return false;
+if(head1->data!=head2->data) return false;
+return areIdentical(head1->next,head2->next);
+    // Code here
+}
+=========================================================================================
+//Delete without head pointer-->cpp
+
+void deleteNode(Node *a)
+{
+   // Your code here
+   *a=*(a->next);
+}
+=========================================================================================
+//Remove duplicate element from sorted Linked List-->cpp
+
+Node *removeDuplicates(Node *root)
+{
+ // your code goes here
+ Node* t;
+t=root;
+while(t->next!=NULL)
+{
+if (t->next->data==t->data)
+{
+Node* t2;
+t2=t->next;
+while(t->data==t2->data)
+{
+if (t2->next!=NULL)
+{
+t->next=t2->next;
+t2->next=NULL;
+delete(t2);
+t2=t->next;
+}
+else
+{
+t->next=NULL;
+t2->next=NULL;
+delete(t2);
+}
+
+}
+}
+else
+{
+t=t->next;
+}
+}
+return root;
+}
+=========================================================================================
+#Remove duplicates from an unsorted linked list-->python
+
+def removeDuplicates(head):
+    #code here
+    if head is None:
+        return
+    
+    temp=head
+    past=None
+    del_node=None
+    dict_h = {}
+    count=0
+    while temp is not None:
+        
+        count=dict_h.get(temp.data,0)
+        
+        if count == 0 :
+            dict_h[temp.data]=1
+            count+=1
+        else:
+            dict_h[temp.data]=count+1
+            count+=1
+            
+        
+        if count == 2:
+            dict_h[temp.data]=count-1
+            count=0
+            
+            past.next=temp.next
+            del_node=temp
+            temp=temp.next
+            del del_node
+        else:
+            
+            past=temp 
+            temp=temp.next
+    
+    del past
+    del count
+    del temp
+    return head
+=========================================================================================
+//Merge two sorted linked lists-->cpp
+
+Node* sortedMerge(Node* head1, Node* head2)
+{
+if(head1==NULL)
+return head2;
+if(head2==NULL)
+return head1;
+Node* newHead;
+if(head1->data<head2->data){
+newHead=head1;
+newHead->next=sortedMerge(head1->next,head2);
+}
+else{
+newHead=head2;
+newHead->next=sortedMerge(head1,head2->next);
+}
+// Your Code Here
+return newHead;
+}
+=========================================================================================
+//Nth node from end of linked list-->java
+
+class GfG
+{
+    // Function to find the nth node from end in the linked list
+    // head: head of the linked list
+    // n: nth node from end to find
+    int getNthFromLast(Node head, int n)
+    {
+    	// Your code here	
+    	Node p = head, f = head;
+        for(int i=1; i<=n-1; i++){
+            f = f.next;
+            if(f == null) return -1;
+        }
+        while(f.next != null){
+            p = p.next;
+            f = f.next;
+        }
+        return p.data;
+    }
+}
+=========================================================================================
+//Swap Kth nodes from ends-->cpp
+Node *swapkthnode(Node* head, int N, int k){
+    // Your Code here
+    if(head == NULL || head->next == NULL){
+        return head;    
+    }
+    
+    if(k > N || (k == (N - k + 1))){
+        return head;
+    }
+    
+    bool first = true, second = false, third = false;
+    Node * x = NULL, * y = NULL;
+    Node * fh = new Node(-1), * ft = fh;
+    Node * sh = new Node(-1), * st = sh;
+    Node * th = new Node(-1), * tt = th;
+    Node * cur = head, * temp = NULL;
+    int i = 1;
+    while(cur){
+        if(i == k){
+            x = cur;
+            if(first){
+                second = true;
+                first = false;
+            }
+            else if(second){
+                third = true;
+                second = false;
+            }
+        }
+        else if(i == N - k + 1){
+            y = cur;
+            if(first){
+                second = true;
+                first = false;
+            }
+            else if(second){
+                third = true;
+                second = false;
+            }
+        }
+        else if(first){
+           ft->next = cur;
+           ft = cur;
+        }
+        else if(second){
+            st->next = cur;
+            st = cur;
+        }
+        else{
+            tt->next = cur;
+            tt = cur;
+        }
+        cur = cur->next;
+        i += 1;
+    }
+    
+    if(k > N - k + 1){
+        swap(x, y);
+    }
+    //join
+    tt->next = NULL;
+    x->next = th->next;
+    
+    st->next = x;
+    y->next = sh->next;
+    
+    ft->next = y;
+    return fh->next;
+}
+=========================================================================================
+//Reverse a linked list-->cpp
+
+void push(Node** head_ref,int num){
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    new_node->data = num;
+    new_node->next = *head_ref;
+    *head_ref = new_node;
+    
+}
+Node* reverseList(Node *head)
+{
+  // Your code here
+  if(head==NULL){
+        return head;
+    }
+    struct Node* abc = head;
+    
+  struct Node* temp1 = NULL;
+  while(abc!=NULL){
+      push(&temp1,abc->data);
+      abc = abc->next;
+  }
+  return temp1;
+}
+=========================================================================================
+//Detect Loop in linked list-->cpp
+
+int detectloop(Node *head) {
+Node*f=head;
+Node*s=head;
+while(f && s && f->next){
+s=s->next;
+f=f->next->next;
+if(s==f){
+return 1;
+}
+}
+return 0;
+}
+=========================================================================================
+//Find length of Loop-->cpp
+
+int countNodesinLoop(struct Node *head)
+{
+std::map<Node *, int> mp;
+Node *temp = head;
+int pos = 1;
+while(temp){
+if(mp[temp])
+return pos-mp[temp];
+mp[temp] = pos++;
+temp = temp->next;
+}
+return 0;
+}
+=========================================================================================
+//Remove loop in Linked List-->cpp
+
+void removeTheLoop(Node *head)
+{
+//Your code here
+// your code here
+Node *temp=head;
+Node *slow=head;
+Node *fast=head;
+int flag=0;
+while(fast->next!=NULL&&slow!=NULL&&fast!=NULL&&fast->next->next!=NULL)
+{
+fast=fast->next->next;
+slow=slow->next;
+if(fast==slow)
+{
+flag=1;
+break;
+}
+}
+if(flag)
+{
+
+while(temp->next!=fast->next)
+{
+temp=temp->next;
+fast=fast->next;
+}
+fast->next=NULL;
+}
+
+return ;
+
+}
+=========================================================================================
+//Rotate a Linked List-->cpp
+
+Node* rotate(Node* head, int k) {
+Node *s=head;
+Node *r;
+while(k!=0&&s!=NULL)
+{
+r=s;
+k--;
+s=s->next;
+}
+if(s==NULL)
+{
+return head;
+}
+else
+{
+r->next=NULL;
+r=head;
+head=s;
+while(s->next!=NULL)
+{
+s=s->next;
+}
+s->next=r;
+return head;
+}
+}
+=========================================================================================
+//Add two numbers represented by linked lists-->cpp
+
+Node* addTwoLists(Node* l1, Node* l2)
+{
+if (l1 == NULL) return l2;
+if (l2 == NULL) return l1;
+int a = l1->data + l2->data;
+Node *p = new Node(a % 10);
+p->next = addTwoLists(l1->next,l2->next);
+if (a >= 10) p->next = addTwoLists(p->next, new Node(1));
+return p;
+}
+=========================================================================================
+//Pairwise swap of nodes in LinkeList-->cpp
+
+struct Node* pairwise_swap(struct Node* head)
+{
+    // your code here
+    Node *temp = head;
+while(temp && temp -> next)
+{
+int hold = temp -> data;
+temp -> data = temp -> next -> data;
+temp -> next -> data = hold;
+temp = temp -> next -> next;
+}
+return head;
+}
+=========================================================================================
+//Check if Linked List is Palindrome-->cpp
+
+bool isPalindrome(Node *head)
+{
+//Your code here
+string s="";
+int i;
+Node* t;
+t=head;
+while(t!=NULL)
+{
+int a=t->data;
+string b = to_string(a);
+s=s+b;
+t=t->next;
+}
+if (s.size()%2==0)
+{
+int c=0;
+for(i=0;i<(s.size())/2;i++)
+{
+if (s[i]==s[s.size()-1-i])
+{
+c++;
+}
+}
+if (c==s.size()/2){return 1;}
+else{return 0;}
+}
+else
+{
+int c=0;
+for(i=0;i<(s.size()-1)/2;i++)
+{
+if (s[i]==s[s.size()-1-i])
+{
+c++;
+}
+}
+if (c==(s.size()-1)/2){return 1;}
+else{return 0;}
+}
+}
+=========================================================================================
+//Merge Sort for Linked List-->java
+
+class LinkedList
+{
+static Node mergeSort(Node head)
+{
+if(head==null || head.next==null) return head;
+Node mid= partition(head);
+return merge(mergeSort(head),mergeSort(mid));
+}
+static Node partition(Node head){
+Node fast=head.next;
+Node slow=head;
+while(fast!=null){
+fast=fast.next;
+if(fast!=null){
+fast=fast.next;
+slow=slow.next;
+}
+}
+Node second=slow.next;
+slow.next=null;
+return second;
+}
+static Node merge(Node head,Node second){
+if(head==null) return second;
+if(second==null) return head;
+Node c=null;
+if(head.data<=second.data) c=head;
+else{
+c=second;
+second=head;
+head=c;
+}
+while(head.next!=null){
+if(head.next.data>second.data){
+Node temp=head.next;
+head.next=second;
+second=temp;
+}
+head=head.next;
+}
+head.next=second;
+return c;
+}
+}
+=========================================================================================
+//Given a linked list of 0s, 1s and 2s, sort it.-->cpp
+
+Node* segregate(Node *head) {
+
+// Add code here
+Node* lastone=NULL;
+Node* lastzero=NULL;
+Node* lasttwo=NULL;
+Node* zerohead=NULL;
+Node* onehead=NULL;
+Node* twohead=NULL;
+while(head)
+{
+if(head->data==1)
+{
+if(lastone==NULL)
+{
+lastone=head;
+onehead=head;
+}
+else
+{
+lastone->next=head;
+lastone=head;
+}
+}
+else if(head->data==0)
+{
+if(lastzero==NULL)
+{
+lastzero=head;
+zerohead=head;
+}
+else
+{
+lastzero->next=head;
+lastzero=head;
+}
+}
+else
+{
+if(lasttwo==NULL)
+{
+lasttwo=head;
+twohead=head;
+}
+else
+{
+lasttwo->next=head;
+lasttwo=head;
+}
+}
+
+head=head->next;
+}
+
+if(zerohead)
+{
+if(onehead)
+{
+lastzero->next=onehead;
+if(twohead)
+{
+lastone->next=twohead;
+lasttwo->next=NULL;
+}
+else lastone->next=NULL;
+}
+else
+{
+if(twohead)
+{
+lastzero->next=twohead;
+lasttwo->next=NULL;
+}
+else lastzero->next=NULL;
+}
+return zerohead;
+}
+else
+{
+if(onehead)
+{
+if(twohead)
+{
+lastone->next=twohead;
+lasttwo->next=NULL;
+}
+else
+{
+lastone->next=NULL;
+}
+return onehead;
+}
+else
+{
+return twohead;
+}
+}
+}
+=========================================================================================
+//Merge Sort on Doubly Linked List-->java
+
+class LinkedList
+{
+static Node sortDoubly(Node head)
+{
+if(head==null||head.next==null)
+return head;
+Node middle=getMiddle(head);
+Node nextOfMiddle = middle.next;
+middle.next=null;
+Node left = sortDoubly(head);
+Node right = sortDoubly(nextOfMiddle);
+Node sortedList = sortedMerge(left,right);
+return sortedList;
+}
+
+public static Node getMiddle(Node head){
+if(head==null)
+return head;
+Node slow=head,fast=head;
+while(fast.next!=null&&fast.next.next!=null){
+slow=slow.next;
+fast=fast.next.next;
+}
+return slow;
+
+}
+
+public static Node sortedMerge(Node a,Node b){
+Node result=null;
+if(a==null)
+return b;
+if(b==null)
+return a;
+if(a.data<=b.data){
+result=a;
+a=a.next;
+}else{
+result=b;
+b=b.next;
+}
+result.prev=null;
+Node curr=result;
+while(a!=null&&b!=null){
+
+if(a.data<=b.data){
+a.prev=curr;
+curr.next=a;
+a=a.next;
+}else{
+b.prev=curr;
+curr.next=b;
+b=b.next;
+}
+curr=curr.next;
+
+}
+if(a==null){
+b.prev=curr;
+curr.next=b;
+}
+if(b==null){
+a.prev=curr;
+curr.next=a;
+}
+return result;
+}
+}
+=========================================================================================
+//Merge K sorted linked lists-->java
+
+class Merge
+{
+    Node mergeKList(Node[]a,int N)
+    {
+     //Add your code here.
+     ArrayList<Integer>arr=new ArrayList<Integer>();
+        Node n=new Node(0);
+        Node ans=new Node(0);
+        Node prev=ans;
+        int v=0;
+        for(int i=0;i<a.length;i++)
+        {
+            n=a[i];
+            while(n!=null)
+            {   
+                Node temp=new Node(n.data);
+                prev.next=temp;
+                prev=temp;
+                n=n.next;
+                v++;
+            }
+        }
+        Node m=ans.next;
+        Node keep=m;
+        Node out=m;
+        int fnal[]=new int[v];
+        int h=0;
+        while(m!=null)
+        {
+            fnal[h++]=m.data;
+            m=m.next;
+        }
+        Arrays.sort(fnal);
+        int d=0;
+        while(keep!=null)
+        {
+            keep.data=fnal[d++];
+            keep=keep.next;
+        }
+        return out;
+    }
+}
+=========================================================================================
+//Intersection Point in Y Shapped Linked Lists-->cpp
+
+int getLength(Node* head)
+{
+int count = 0;
+
+while(head)
+{
+count++;
+head = head->next;
+}
+
+return count;
+}
+
+int intersectPoint(Node* head1, Node* head2)
+{
+int length1, length2;
+
+length1 = getLength(head1);
+length2 = getLength(head2);
+
+Node* temp;
+
+temp = head2;
+
+int i,j;
+
+for(i = 0; i < length1; i++)
+{
+for(j = 0; j < length2; j++)
+{
+if(head1 == temp)
+return temp->data;
+
+temp = temp->next;
+
+if(temp == NULL)
+temp = head2;
+}
+
+head1 = head1 ->next;
+}
+
+return -1;
+}
+
+
+=========================================================================================
+//Clone a linked list with next and random pointer-->cpp
+
+Node *copyList(Node *head) {
+Node* temp = new Node(head->data);
+temp->next = head->next;
+temp->arb = head->arb;
+return temp;
+}
+=========================================================================================
+//Add two numbers represented by Linked List-->cpp
+
+int c1(Node* head1,Node* head2){
+    Node* p1=head1;
+    Node* p2=head2;
+    if(p1->next==NULL){
+        int j=(p1->data+p2->data)/10;
+        p1->data=(p1->data+p2->data)%10;
+        return j;
+    }
+    int c2=c1(p1->next,p2->next);
+    int c=(c2+p1->data+p2->data)/10;
+    p1->data=(p1->data+p2->data+c2)%10;
+    return c;
+}
+Node* addSameSize(Node* head1, Node* head2, int* carry) 
+{ 
+	int j=c1(head1,head2);
+	//int j=1;
+	*carry=j;
+	return head1;
+} 
+int cc(Node* head1,Node* curr,int* carry){
+    Node* p=head1;
+    if(p==curr){
+        return *carry;
+    }
+    int j=cc(p->next,curr,carry);
+    int c=(p->data+j)/10;
+    p->data=(head1->data+j)%10;
+    return c;
+}
+void addCarryToRemaining(Node* head1, Node* curr, int* carry, Node** result) 
+{ 
+    *result=head1;
+	int j=cc(head1,curr,carry);
+	*carry=NULL;
+}
+=========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
